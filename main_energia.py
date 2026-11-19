@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+
 import sys
 
 import dados_energia as d
@@ -8,7 +8,7 @@ from consumo_familiar import perfil_aparelhos, perfil_conta
 
 REGIOES = ("Sul", "Sudeste", "Nordeste", "Centro-Oeste", "Norte")
 AREAS_MENU = {str(i): area for i, area in enumerate(d.AREAS, start=2)}
-AVISO = "[!] Valores ESTIMADOS: não são medição nem garantia de economia."
+AVISO = "! Valores ESTIMADOS: não são medição nem garantia de economia."
 
 
 def titulo(texto):
@@ -25,11 +25,11 @@ def ler_inteiro(mensagem, minimo, maximo, vazio=None):
         try:
             valor = int(entrada)
         except ValueError:
-            print("[!] Digite um número inteiro.\n")
+            print("Digite um número inteiro.\n")
             continue
         if minimo <= valor <= maximo:
             return valor
-        print(f"[!] Digite um valor entre {minimo} e {maximo}.\n")
+        print(f"Digite um valor entre {minimo} e {maximo}.\n")
 
 
 def ler_decimal(mensagem, minimo, maximo, vazio):
@@ -40,11 +40,11 @@ def ler_decimal(mensagem, minimo, maximo, vazio):
         try:
             valor = float(entrada)
         except ValueError:
-            print("[!] Digite um número.\n")
+            print("Digite um número.\n")
             continue
         if minimo <= valor <= maximo:
             return valor
-        print(f"[!] Digite um valor entre {minimo} e {maximo}.\n")
+        print(f"Digite um valor entre {minimo} e {maximo}.\n")
 
 
 def ler_opcao(mensagem, opcoes):
@@ -52,7 +52,7 @@ def ler_opcao(mensagem, opcoes):
         valor = input(mensagem).strip().upper()
         if valor in opcoes:
             return valor
-        print(f"[!] Digite uma destas opções: {', '.join(opcoes)}.\n")
+        print(f"Digite uma destas opções: {', '.join(opcoes)}.\n")
 
 
 def questionario_aparelhos():
@@ -65,7 +65,7 @@ def questionario_aparelhos():
             print()
         if any(itens.values()):
             return itens
-        print("[!] Informe pelo menos um aparelho.")
+        print("Informe pelo menos um aparelho.")
 
 
 def criar_perfil():
@@ -98,15 +98,15 @@ def mostrar_perfil(analise):
     print(f"Região: {perfil.regiao}")
     print(f"Tarifa usada: {brl(analise.tarifa)} por kWh\n")
     for area, nome in d.AREAS.items():
-        print(f"[*] {nome + ':':<24}{num(analise.areas[area]):>9} kWh\n")
+        print(f" {nome + ':':<24}{num(analise.areas[area]):>9} kWh\n")
     print("-" * 60)
-    print(f"[>] {'CONSUMO TOTAL:':<24}{num(analise.total):>9} kWh/mês")
-    print(f"[>] {'CUSTO DA ENERGIA:':<24}{brl(analise.total * analise.tarifa):>13}/mês\n")
+    print(f"{'CONSUMO TOTAL:':<24}{num(analise.total):>9} kWh/mês")
+    print(f"{'CUSTO DA ENERGIA:':<24}{brl(analise.total * analise.tarifa):>13}/mês\n")
     if perfil.modo == "conta":
-        print("[i] O total vem da sua conta. A divisão por área é estimada")
+        print(" O total vem da sua conta. A divisão por área é estimada")
         print("    e pode mudar bastante, principalmente com ar-condicionado.")
     elif perfil.modo == "aparelhos":
-        print("[i] Cálculo baseado nas quantidades informadas e em um uso típico.")
+        print(" Cálculo baseado nas quantidades informadas e em um uso típico.")
     print(AVISO)
 
 
@@ -138,10 +138,10 @@ def comparar_area(analise, area):
     melhor = analise.melhor_area(area)
     print("\n" + "-" * 60)
     if melhor:
-        print(f"[>] Melhor primeiro passo: {melhor['nome']}")
+        print(f"Melhor primeiro passo: {melhor['nome']}")
     else:
-        print("[>] Nas premissas usadas, nenhuma troca compensa agora.")
-    print("[i] A energia solar é vendida como sistema da casa; aqui aparece só a parte desta área.")
+        print("Nas premissas usadas, nenhuma troca compensa agora.")
+    print("A energia solar é vendida como sistema da casa; aqui aparece só a parte desta área.")
     print(AVISO)
 
 
@@ -159,9 +159,9 @@ def relatorio(analise):
         print("   Condições: imóvel próprio, telhado sem sombra e orçamento local.")
     conservador = analise.retorno_solar_conservador()
     if conservador:
-        print(f"\n[i] Solar no cenário conservador: retorno de {num(conservador)} anos")
+        print(f"\nSolar no cenário conservador: retorno de {num(conservador)} anos")
         print("    (preço 30% maior e geração 15% menor).")
-    print("\n[i] O CO2 considera a energia da rede. A fabricação dos painéis também")
+    print("\nO CO2 considera a energia da rede. A fabricação dos painéis também")
     print("    emite CO2; por isso o ganho solar é maior na conta do que no clima.")
     print(AVISO)
 
@@ -181,17 +181,17 @@ def conversar(analise):
 def menu():
     analise = None
     while True:
-        titulo("[>] CITIZEN ASSIST AI - ENERGIA PARA FAMÍLIAS")
+        titulo("CITIZEN ASSIST AI - ENERGIA PARA FAMÍLIAS")
         if analise is None:
             print("1. Criar perfil familiar")
             print("0. Sair")
             opcao = ler_opcao("\nDigite a opção: ", ("1", "0"))
             if opcao == "1":
                 analise = AnaliseEnergia(criar_perfil())
-                print("\n[OK] Perfil criado!")
+                print("\nPerfil criado!")
                 mostrar_perfil(analise)
                 continue
-            print("\n[OK] Até logo!")
+            print("\nAté logo!")
             return
 
         print("1. Ver perfil familiar")
@@ -214,7 +214,7 @@ def menu():
             analise = AnaliseEnergia(criar_perfil())
             mostrar_perfil(analise)
         else:
-            print("\n[OK] Até logo!")
+            print("\nAté logo!")
             return
 
 
