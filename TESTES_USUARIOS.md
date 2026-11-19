@@ -132,9 +132,8 @@ As casas, os consumos e as contas abaixo são fictícios.
 ## Registro dos testes
 
 | Participante | Cenário | Concluiu sem ajuda? | Entendeu a orientação? | Utilidade (1 a 5) | Comentário recebido |
-|---|---|---|---|---|---|---|---|
+|---|---|---|---|---|---|
 | P1 | 1 | SIM | SIM | 4 | Orientação de como reduzir, no que investir e as limitações |
-| P2 | 2 | SIM | SIM | 5 | Uma solução com energia solar, as condições para implementar e as limitações | 
-| P3 | 3 | SIM | SIM | 5 | Confirmação de que o chuveiro gasta muito | 
-| P4 | 4 | Mais ou Menos | SIM | 3 | Passou a comparação e possibilidades. | 
-
+| P2 | 2 | SIM | SIM | 5 | Uma solução com energia solar, as condições para implementar e as limitações |
+| P3 | 3 | SIM | SIM | 5 | Confirmação de que o chuveiro gasta muito |
+| P4 | 4 | Mais ou Menos | SIM | 3 | Passou a comparação e possibilidades. |
